@@ -8,13 +8,15 @@ import {
   TouchableOpacity,
   Alert
 } from "react-native";
+import LoadingIndicator from "./LoadingComponent";
 
 export default class LoginComponent extends React.Component {
   constructor() {
     super();
     this.state = {
       email: "jm1@example.com",
-      password: "jay@123"
+      password: "jay@123",
+      isLoading: false
     };
   }
   onSubmit = () => {
@@ -22,6 +24,8 @@ export default class LoginComponent extends React.Component {
 
     let email = this.state.email;
     let password = this.state.password;
+
+    this.setState({ isLoading: true });
 
     fetch("http://35.160.197.175:3006/api/v1/user/login", {
       method: "POST",
@@ -34,6 +38,7 @@ export default class LoginComponent extends React.Component {
       })
     })
       .then(result => {
+        // this.setState({ isLoading: false });
         if (result.status === 200) {
           return result.json();
         } else {
@@ -41,10 +46,14 @@ export default class LoginComponent extends React.Component {
         }
       })
       .then(response => {
+        this.setState({ isLoading: false });
         console.log(response);
         if (response) {
           Alert.alert("Success", "Welcome to Habari");
         }
+      })
+      .catch(error => {
+        this.setState({ isLoading: false });
       });
   };
   render() {
@@ -54,6 +63,7 @@ export default class LoginComponent extends React.Component {
           <Text style={styles.textStyle}>Habari</Text>
         </View>
         <View style={styles.bodyView}>
+          <LoadingIndicator isLoading={this.state.isLoading} />
           <TextInput
             placeholder="Please enter email"
             keyboardType="email-address"
