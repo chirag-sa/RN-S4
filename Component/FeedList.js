@@ -66,12 +66,14 @@ export default class FeedList extends React.Component {
                     <Text style={styles.normalText}>
                       Chef: {item.firstName} {item.lastName}
                     </Text>
-                    {/* <Image
+                    <Image
                       style={{ width: "100%", height: 200 }}
                       source={{
                         uri: item.photo
+                          ? item.photo
+                          : "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png"
                       }}
-                    /> */}
+                    />
                     <Text style={{ marginTop: 10 }}>
                       Time: {item.preparationTime}
                     </Text>
