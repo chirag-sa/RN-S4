@@ -66,12 +66,12 @@ export default class FeedList extends React.Component {
                     <Text style={styles.normalText}>
                       Chef: {item.firstName} {item.lastName}
                     </Text>
-                    <Image
+                    {/* <Image
                       style={{ width: "100%", height: 200 }}
                       source={{
                         uri: item.photo
                       }}
-                    />
+                    /> */}
                     <Text style={{ marginTop: 10 }}>
                       Time: {item.preparationTime}
                     </Text>
@@ -82,7 +82,7 @@ export default class FeedList extends React.Component {
                 </View>
               );
             }}
-            keyExtractor={(item, index) => index}
+            keyExtractor={(item, index) => "" + index}
             key={(item, index) => index}
           />
         </View>
