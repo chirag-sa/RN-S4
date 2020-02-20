@@ -47,7 +47,7 @@ export default class LoginComponent extends React.Component {
       })
       .then(response => {
         this.setState({ isLoading: false });
-        console.log(response);
+
         this.props.navigation.navigate("Tab");
         if (response) {
         }
