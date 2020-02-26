@@ -49,6 +49,11 @@ export default class FeedList extends React.Component {
         this.setState({ isLoading: false });
       });
   };
+  navigateToDetail(recipeId) {
+    console.log("clicked");
+
+    this.props.navigation.push("Detail", recipeId);
+  }
   render() {
     return (
       <SafeAreaView style={styles.container}>
@@ -60,7 +65,12 @@ export default class FeedList extends React.Component {
               return (
                 <View style={{ flex: 1 }}>
                   <Card style={{ padding: 10, margin: 10 }}>
-                    <Text style={[styles.heading, styles.normalText]}>
+                    <Text
+                      style={[styles.heading, styles.normalText]}
+                      onPress={() => {
+                        this.navigateToDetail(item);
+                      }}
+                    >
                       {item.name}
                     </Text>
                     <Text style={styles.normalText}>
